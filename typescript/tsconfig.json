@@ -98,6 +98,13 @@
 
     /* Completeness */
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
-    "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
+    "skipLibCheck": true,
+    "plugins": [
+      {
+        "transform": "typescript-json/lib/transform",
+        "functional": true, // test function type
+        "numeric": true, // test `isNaN()` and `isFinite()`
+      }
+    ],                          /* Skip type checking all .d.ts files. */
   }
 }
