@@ -88,7 +88,7 @@ var buf, obj;
 if (JSON) {
   buf = bench("buf = Buffer(JSON.stringify(obj));", JSON_stringify_for_buffer, data);
   obj = bench("obj = JSON.parse(buf);", JSON.parse, buf);
-  console.log("|");
+  console.log("| | | |");
   test(obj);
   buf = bench("buf = JSON.stringify(obj);", JSON_stringify, data);
   obj = bench("obj = JSON.parse(buf);", JSON.parse, buf);
@@ -97,14 +97,14 @@ if (JSON) {
 }
 
 if (TSON) {
-  console.log("|");
+  console.log("| | | |");
   buf = bench(
     "buf = Buffer(TSON.stringify(obj));",
     TSON_stringify_for_buffer,
     data
   );
   obj = bench("obj = JSON.parse(buf);", JSON.parse, buf);
-  console.log("|");
+  console.log("| | | |");
   buf = bench(
     "buf = TSON.stringify(obj);",
     TSON_stringify,
@@ -115,7 +115,7 @@ if (TSON) {
 }
 
 if (msgpackr) {
-  console.log("|");
+  console.log("| | | |");
   buf = bench(
     'buf = require("msgpackr").msgpack.pack(obj);',
     msgpackr.pack,
@@ -131,7 +131,7 @@ if (msgpackr) {
 }
 
 if (notepack) {
-  console.log("|");
+  console.log("| | | |");
   buf = bench('buf = require("notepack").encode(obj);', notepack.encode, data);
   obj = bench('obj = require("notepack").decode(buf);', notepack.decode, buf);
   test(obj);
