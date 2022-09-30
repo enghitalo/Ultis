@@ -28,20 +28,22 @@ type Example = {
   };
 };
 
-var msgpack_node = try_require("msgpack");
+const msgpack_node = try_require("msgpack");
 // var msgpack_lite = try_require("../index");
 // var msgpack_js = try_require("msgpack-js");
 // var msgpack_js_v5 = try_require("msgpack-js-v5");
-var msgpack5 = try_require("msgpack5");
+// const msgpack5 = try_require("msgpack5");
 // var msgpack_unpack = try_require("msgpack-unpack");
-var msgpack_codec = try_require("msgpack.codec");
-var notepack = try_require("notepack");
-var msgpackr = try_require("msgpackr");
+const msgpack_codec = try_require("msgpack.codec");
+const notepack = try_require("notepack");
+const msgpackr = try_require("msgpackr");
+const cbor_x = try_require("cbor-x");
 // var TSON = try_require("typescript-json");
 import TSON from "typescript-json";
 
-msgpack5 = msgpack5 && msgpack5();
-msgpack_codec = msgpack_codec && msgpack_codec.msgpack;
+// msgpack5 = msgpack5 && msgpack5();
+// msgpack_codec = msgpack_codec && msgpack_codec.msgpack;
+import { decode, encode } from 'cbor-x';
 
 var pkg = require("../package.json");
 var data = require("./test/example");
@@ -116,8 +118,10 @@ if (TSON) {
 
 if (msgpackr) {
   console.log("| | | |");
+  // if (!isNativeAccelerationEnabled)
+  //   console.warn('Native acceleration not enabled, verify that install finished properly')
   buf = bench(
-    'buf = require("msgpackr").msgpack.pack(obj);',
+    'buf = require("msgpackr").pack(obj);',
     msgpackr.pack,
     data
   );
@@ -129,6 +133,25 @@ if (msgpackr) {
   );
   test(obj);
 }
+
+if (cbor_x) {
+  console.log("| | | |");
+  // if (!isNativeAccelerationEnabled)
+  //   console.warn('Native acceleration not enabled, verify that install finished properly')
+  buf = bench(
+    'buf = require("cbor_x").encode(obj);',
+    cbor_x.encode,
+    data
+  );
+
+  obj = bench(
+    'obj = require("cbor_x").decode(buf);',
+    cbor_x.decode,
+    buf
+  );
+  test(obj);
+}
+
 
 if (notepack) {
   console.log("| | | |");
