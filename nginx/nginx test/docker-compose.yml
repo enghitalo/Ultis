@@ -1,0 +1,39 @@
+version: '3'  
+
+services:
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    ports:
+      - "8080:80"
+
+  node1:
+    image: nginx:alpine
+    container_name: node1
+    ports:
+      - "80"
+
+  app1:
+    # build:
+    #   context: .
+      # dockerfile: app1.Dockerfile
+    image: node:current-alpine
+    container_name: app1
+    # ports:
+    #   - "80"
+    volumes:
+      - ./app1:/home/node/app1
+    command: node /home/node/app1/src/index.js
+
+  app2:
+    # build:
+    #   context: .
+      # dockerfile: app1.Dockerfile
+    image: node:current-alpine
+    container_name: app2
+    # ports:
+    #   - "80"
+    volumes:
+      - ./app2:/home/node/app2
+    command: node /home/node/app2/src/index.js
