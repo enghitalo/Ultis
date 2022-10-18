@@ -1,19 +1,22 @@
-// remove tudo
-sudo docker rmi $(sudo docker images -a -q) 
-// sobe o docker compose
-sudo docker compose up -d
-// verifica se está rodando
-sudo docker compose ps 
-sudo docker compose ls 
+#### // remove tudo
+`sudo docker rmi $(sudo docker images -a -q)`
+#### // sobe o docker compose
+`sudo docker compose up -d`
+#### // verifica se está rodando
+`sudo docker compose ps`
+`sudo docker compose ls` 
 
+```bash
 sudo docker compose exec nginx apk add bash &&
 sudo docker compose exec nginx apk add vim &&
 sudo docker compose exec nginx apk add nano
+```
 
-sudo docker compose exec nginx bash 
+`sudo docker compose exec nginx bash` 
 
-nano etc/nginx/conf.d/default.conf
+`nano etc/nginx/conf.d/default.conf`
 
+```bash
 server {
     listen       80;
     listen  [::]:80;
@@ -23,23 +26,26 @@ server {
         proxy_pass   http://node1;     
     }
 }
-nginx -t
+```
+`nginx -t`
 
+```bash
 sudo docker compose exec node1 apk add bash &&
 sudo docker compose exec node1 apk add vim &&
 sudo docker compose exec node1 apk add nano 
+```
 
-sudo docker compose exec node1 bash 
+`sudo docker compose exec node1 bash`
 
-ls usr/share/nginx/html
+`ls usr/share/nginx/html`
 
-ls etc/nginx/nginx.conf
-ls etc/nginx/conf.d/default.conf
+`ls etc/nginx/nginx.conf`
+`ls etc/nginx/conf.d/default.conf`
 
-nginx -t
+`nginx -t`
 
-nginx -s reload
-
+`nginx -s reload`
+```bash
 server {
         server_name vardhan.com;
 
@@ -64,11 +70,12 @@ server {
           add_header Front-End-Https on;
         }
 }
+```
 
-nginx -t
+`nginx -t`
 
-nginx -s reload
+`nginx -s reload`
 
-nginx -s stop
+`nginx -s stop`
 
-sudo docker compose down
+`sudo docker compose down`
