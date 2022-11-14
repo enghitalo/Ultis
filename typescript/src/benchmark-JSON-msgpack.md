@@ -3,20 +3,23 @@
 
 operation                                                 |   op    |   ms  |  op/s 
 --------------------------------------------------------- | -----:  | ----: | -----:
-buf = Buffer(JSON.stringify(obj));                        | 2036700 | 10000 | 203670
-obj = JSON.parse(buf);                                    | 2264400 | 10000 | 226440
+buf = Buffer(JSON.stringify(obj));                        | 2004900 | 10000 | 200490
+obj = JSON.parse(buf);                                    | 2221700 | 10000 | 222170
 | | | |
-buf = JSON.stringify(obj);                                | 3072800 | 10000 | 307280
-obj = JSON.parse(buf);                                    | 4096000 | 10000 | 409600
+buf = JSON.stringify(obj);                                | 3254100 | 10000 | 325410
+obj = JSON.parse(buf);                                    | 4136800 | 10000 | 413680
 | | | |
-buf = Buffer(TSON.stringify(obj));                        | 1728200 | 10000 | 172820
-obj = JSON.parse(buf);                                    | 2213300 | 10000 | 221330
+buf = Buffer(TSON.stringify(obj));                        | 1854400 | 10000 | 185440
+obj = JSON.parse(buf);                                    | 2216900 | 10000 | 221690
 | | | |
-buf = TSON.stringify(obj);                                | 2706400 | 10000 | 270640
-obj = JSON.parse(buf);                                    | 4061700 | 10000 | 406170
+buf = TSON.stringify(obj);                                | 3089500 | 10000 | 308950
+obj = JSON.parse(buf);                                    | 4279500 | 10000 | 427950
 | | | |
-buf = require("msgpackr").msgpack.pack(obj);              | 3978400 | 10000 | 397840
-obj = require("msgpackr").unpack(buf);                    | 1770800 | 10000 | 177080
+buf = require("msgpackr").pack(obj);                      | 4741200 | 10000 | 474120
+obj = require("msgpackr").unpack(buf);                    | 1707200 | 10000 | 170720
 | | | |
-buf = require("notepack").encode(obj);                    | 2101100 | 10000 | 210110
-obj = require("notepack").decode(buf);                    | 1380000 | 10000 | 138000
+buf = require("cbor_x").encode(obj);                      | 4579800 | 10000 | 457980
+obj = require("cbor_x").decode(buf);                      | 1706600 | 10000 | 170660
+| | | |
+buf = require("notepack").encode(obj);                    | 2034900 | 10000 | 203490
+obj = require("notepack").decode(buf);                    | 1339200 | 10000 | 133920
