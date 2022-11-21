@@ -46,7 +46,7 @@ import TSON from "typescript-json";
 import { decode, encode } from 'cbor-x';
 
 var pkg = require("../package.json");
-var data = require("./test/example");
+var data = require(__filename.substr(-2) === "ts" ? "./test/example" : "../src/test/example");
 // var packed = msgpack_lite.encode(data);
 var expected = JSON.stringify(data);
 
